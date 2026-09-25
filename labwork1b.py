@@ -5,9 +5,9 @@ student_dobs = []
 course_ids = []
 course_names = []
 
-mark_student_ids = []   # parallel lists: mark i belongs to
-mark_course_ids = []    # student mark_student_ids[i], course mark_course_ids[i]
-mark_values = []        # with value mark_values[i]
+mark_student_ids = []   
+mark_course_ids = []    
+mark_values = []       
 
 
 def input_students():
