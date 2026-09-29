@@ -35,9 +35,10 @@ def input_marks(students, course_id):
     marks = []
 
     for student in students:
-        raw_mark = float(
-            input("  Mark for " + student.name + " (" + student.student_id + "): ")
+        raw_mark = input(
+            "  Mark for " + student.name + " (" + student.student_id + "): "
         )
+        raw_mark = float(raw_mark.replace(",", "."))
         value = math.floor(raw_mark * 10) / 10
         marks.append(Mark(student.student_id, course_id, value))
 
