@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17345f">
+  <title>USTH Uni Desk | Records</title>
+  <link rel="stylesheet" href="/app.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#overview" aria-label="USTH Uni Desk overview">
+        <img class="brand-logo" src="/usth-logo.png" alt="USTH Vietnam France University">
+        <span class="brand-name"><span class="brand-name-uni">UNI</span><span class="brand-name-divider" aria-hidden="true"></span><span class="brand-name-desk">DESK</span></span>
+      </a>
+
+      <div class="sidebar-heritage" aria-hidden="true">
+        <img class="sidebar-watermark sidebar-watermark-large" src="/usth-logo.png" alt="">
+        <img class="sidebar-watermark sidebar-watermark-small" src="/usth-logo.png" alt="">
+        <img class="sidebar-rooster sidebar-rooster-one" src="/gallic-rooster.svg" alt="">
+        <img class="sidebar-rooster sidebar-rooster-two" src="/gallic-rooster.svg" alt="">
+        <img class="sidebar-rooster sidebar-rooster-three" src="/gallic-rooster.svg" alt="">
+      </div>
+
+      <div class="nav-caption">WORKSPACE</div>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <button class="nav-link active" data-view="overview"><span class="nav-index">01</span>Home</button>
+        <button class="nav-link" data-view="students"><span class="nav-index">02</span>Students</button>
+        <button class="nav-link" data-view="courses"><span class="nav-index">03</span>Courses</button>
+        <button class="nav-link" data-view="marks"><span class="nav-index">04</span>Marks</button>
+        <button class="nav-link" data-view="gpa"><span class="nav-index">05</span>GPA ranking</button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="privacy-mark"><span></span>LOCAL WORKSPACE</div>
+        <p>Records are saved on this computer.</p>
+      </div>
+    </aside>
+
+    <div class="main-column">
+      <header class="topbar">
+        <div class="topbar-context">
+          <span class="topbar-kicker">REGISTRY <span class="slash">/</span> <span id="current-section">OVERVIEW</span></span>
+          <time id="today-date"></time>
+        </div>
+        <div class="topbar-actions">
+          <div class="connection-state"><span class="connection-dot" id="connection-dot"></span><span id="connection-label">Connecting</span></div>
+          <button class="button button-coral" data-add="student"><span aria-hidden="true">+</span> Add student</button>
+        </div>
+      </header>
+
+      <main class="content-area">
+        <section class="page active" id="page-overview" aria-labelledby="overview-title">
+          <div class="page-heading overview-heading">
+            <div>
+              <p class="overline">USTH UNI DESK</p>
+              <h1 id="overview-title">Home</h1>
+              <p class="heading-copy">Start with a common task or continue reviewing the register.</p>
+            </div>
+          </div>
+
+          <section class="home-quick-actions" aria-label="Quick actions">
+            <div class="home-quick-heading"><h2>Quick actions</h2><span>COMMON TASKS</span></div>
+            <div class="home-action-grid">
+              <button class="home-action" data-add="student"><span class="home-action-symbol" aria-hidden="true">+</span><span><strong>Add a student</strong><small>Enter one record</small></span></button>
+              <button class="home-action" data-import="students"><span class="home-action-symbol home-action-import" aria-hidden="true">⇧</span><span><strong>Import a roster</strong><small>CSV or text list</small></span></button>
+              <button class="home-action" data-add="course"><span class="home-action-symbol" aria-hidden="true">+</span><span><strong>Add a course</strong><small>Set course credits</small></span></button>
+              <button class="home-action" data-add="mark"><span class="home-action-symbol home-action-mark" aria-hidden="true">✓</span><span><strong>Record marks</strong><small>Enter results out of 20</small></span></button>
+            </div>
+          </section>
+
+          <div class="metric-grid" id="overview-metrics">
+            <article class="metric"><div class="metric-label">Students</div><div class="metric-value" id="student-count">—</div></article>
+            <article class="metric"><div class="metric-label">Courses</div><div class="metric-value" id="course-count">—</div></article>
+            <article class="metric"><div class="metric-label">Marks recorded</div><div class="metric-value" id="mark-count">—</div></article>
+            <article class="metric"><div class="metric-label">Class average / 20</div><div class="metric-value" id="average-gpa">—</div></article>
+          </div>
+
+          <div class="overview-lower">
+            <section class="surface-section recent-section">
+              <div class="section-heading">
+                <div><p class="overline">STUDENT RECORDS</p><h2>Recently added</h2></div>
+                <button class="text-button" data-go="students">View all students <span aria-hidden="true">→</span></button>
+              </div>
+              <div id="recent-students" class="table-mount"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="page" id="page-students" aria-labelledby="students-title" hidden>
+          <div class="page-heading compact-heading">
+            <div><p class="overline">PEOPLE</p><h1 id="students-title">Students<span class="heading-period">.</span></h1><p class="heading-copy">The people in your academic register.</p></div>
+            <div class="heading-actions"><button class="button button-outline" data-clear="students">Clear list</button><button class="button button-outline" id="import-students">Import list</button><button class="button button-coral" data-add="student">+ Add student</button></div>
+          </div>
+          <section class="table-section">
+            <div class="table-toolbar"><label class="search-field"><span class="search-symbol" aria-hidden="true">⌕</span><input id="student-search" type="search" placeholder="Search name or student ID" autocomplete="off"></label><span class="result-count" id="student-results-count"></span></div>
+            <div class="table-mount" id="students-table"></div>
+          </section>
+        </section>
+
+        <section class="page" id="page-courses" aria-labelledby="courses-title" hidden>
+          <div class="page-heading compact-heading">
+            <div><p class="overline">CURRICULUM</p><h1 id="courses-title">Courses<span class="heading-period">.</span></h1><p class="heading-copy">Subjects and credit values in the current register.</p></div>
+            <div class="heading-actions"><button class="button button-outline" data-clear="courses">Clear list</button><button class="button button-coral" data-add="course">+ Add course</button></div>
+          </div>
+          <section class="table-section">
+            <div class="table-toolbar"><span class="table-toolbar-label">COURSE CATALOGUE</span><span class="result-count" id="course-results-count"></span></div>
+            <div class="table-mount" id="courses-table"></div>
+          </section>
+        </section>
+
+        <section class="page" id="page-marks" aria-labelledby="marks-title" hidden>
+          <div class="page-heading compact-heading">
+            <div><p class="overline">ASSESSMENT</p><h1 id="marks-title">Marks<span class="heading-period">.</span></h1><p class="heading-copy">All results use the 20-point scale.</p></div>
+            <div class="heading-actions"><button class="button button-outline" data-clear="marks">Clear list</button><button class="button button-coral" data-add="mark">+ Record mark</button></div>
+          </div>
+          <section class="table-section">
+            <div class="table-toolbar"><label class="filter-field"><span>COURSE</span><select id="mark-course-filter"><option value="">All courses</option></select></label><span class="result-count" id="mark-results-count"></span></div>
+            <div class="table-mount" id="marks-table"></div>
+          </section>
+        </section>
+
+        <section class="page" id="page-gpa" aria-labelledby="gpa-title" hidden>
+          <div class="page-heading compact-heading">
+            <div><p class="overline">STUDENT OUTCOMES</p><h1 id="gpa-title">GPA ranking<span class="heading-period">.</span></h1><p class="heading-copy">Credit-weighted averages, ordered from highest to lowest.</p></div>
+            <div class="heading-actions"><label class="filter-field"><span>GRADE SCALE</span><select id="gpa-scale"><option value="4">4.0 GPA</option><option value="10" selected>10-point</option><option value="20">20-point</option></select></label><button class="button button-outline" data-go="students">Browse students <span aria-hidden="true">→</span></button></div>
+          </div>
+          <div class="ranking-note"><span class="ranking-note-mark">i</span><span>Students without marks appear last. Scores convert proportionally to the selected scale.</span></div>
+          <div class="table-mount ranking-table" id="gpa-table"></div>
+        </section>
+      </main>
+
+      <footer class="app-footer"><span>USTH UNI DESK <span class="footer-separator">/</span> PRIVATE BY DEFAULT</span><span>ACADEMIC RECORDS</span></footer>
+    </div>
+  </div>
+
+  <dialog class="record-dialog" id="import-dialog">
+    <form id="import-form" autocomplete="off" novalidate>
+      <div class="dialog-heading"><div><p class="overline">STUDENT RECORDS</p><h2>Import students</h2></div><button class="close-button" type="button" id="import-close" aria-label="Close import dialog">×</button></div>
+      <label class="form-field">CSV or text file<input id="import-file" type="file" accept=".csv,.txt,text/csv,text/plain" required></label>
+      <div class="import-help"><span>Use CSV columns <code>name, student_id, dob</code>, or one name per line. Missing IDs are generated; DOB may be blank.</span><button class="text-button" type="button" id="download-student-template">Download CSV template</button></div>
+      <section class="import-preview" id="import-preview" hidden aria-live="polite">
+        <strong id="import-summary"></strong>
+        <ul id="import-issues"></ul>
+        <div class="import-sample" id="import-sample"></div>
+      </section>
+      <p class="form-error" id="import-error" role="alert"></p>
+      <div class="dialog-actions"><button class="button button-outline" type="button" id="import-cancel">Cancel</button><button class="button button-dark" type="submit" id="import-submit" disabled>Import students</button></div>
+    </form>
+  </dialog>
+
+  <dialog class="record-dialog" id="record-dialog">
+    <form id="record-form" autocomplete="off" novalidate>
+      <div class="dialog-heading"><div><p class="overline" id="dialog-eyebrow">NEW RECORD</p><h2 id="dialog-title">Add student</h2></div><button class="close-button" type="button" id="dialog-close" aria-label="Close dialog" autofocus>×</button></div>
+      <div id="form-fields" class="form-fields"></div>
+      <p class="form-error" id="form-error" role="alert"></p>
+      <div class="dialog-actions"><button class="button button-outline" type="button" id="dialog-cancel">Cancel</button><button class="button button-dark" type="submit" id="dialog-submit">Save record <span aria-hidden="true">↗</span></button></div>
+    </form>
+  </dialog>
+
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>
