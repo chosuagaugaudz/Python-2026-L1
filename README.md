@@ -23,3 +23,11 @@ The app lets you manage students, courses, and marks, browse credit-weighted GPA
 ```powershell
 python -m pw5.main
 ```
+
+## Practical Work 8
+
+The multithreaded version is in `pw8`. Run it from the `Python-2026-L1`
+directory with either `python -m pw8.main` for the terminal application or
+`python -m pw8.web` for the web application. It persists compressed pickle
+snapshots on a background worker and flushes pending saves when the
+application exits.

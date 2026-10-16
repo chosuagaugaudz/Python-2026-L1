@@ -1,0 +1,1 @@
+"""Practical Work 8 student management application."""
